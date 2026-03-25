@@ -45,7 +45,7 @@ Nisu potrebni ni instalacija ni server. Dovoljno je otvoriti `index.html` u bilo
 index.html   →  dvostruki klik ili otvaranje u pregledaču
 ```
 
-> Preporučeni pregledači: Chrome, Edge i Firefox (bilo koja verzija iz poslednje 3 godine).
+> Preporučeni pretraživači: Chrome, Edge, Firefox (bilo koja verzija iz poslednje 3 godine).
 
 ---
 
@@ -73,6 +73,7 @@ Interno, aplikacija uvek čuva dimenzije u **milimetrima**.
 | **Strategija** | `Brza` = 3 heuristike i brz rezultat; `Napredna` = 48 determinističkih i dodatne nasumične kombinacije za bolji rezultat |
 | **Iteracije** | Samo za naprednu strategiju: broj iteracija pretrage (5–500, preporučeno 60–120) |
 | **Optimizuj broj rezova** | Ako je uključeno, algoritam favorizuje rasporede koji zahtevaju manji ukupan broj prolaza testerom |
+| **Optimizuj broj rezova** | Ako je uključeno, algoritam favorizuje rasporede koji zahtevaju manji ukupan broj prolaza testerom |
 
 Kanvas se **odmah ažurira** čim se promene dimenzije ploče, dezen ili smer šare — bez potrebe za ponovnim optimizovanjem.
 
@@ -84,6 +85,7 @@ Svaki komad se definiše sa:
 
 | Polje | Opis |
 |---|---|
+| **Širina** | Širina komada u trenutnoj mernoj jedinici |
 | **Širina** | Širina komada u trenutnoj mernoj jedinici |
 | **Visina** | Visina komada |
 | **Količina** | Broj komada tih dimenzija (celo pozitivan broj) |
@@ -113,7 +115,7 @@ sirina,visina,kolicina,rotacija
 - separator: `,` ili `;` ili tab
 - `rot` = rotacija dozvoljena; `fix` = zabranjeno (polje je opciono; default je `rot`)
 - linije koje počinju sa `#` se ignorišu (komentari)
-- prazne linije se preskaju
+- prazne linije se preskaču
 
 Nakon uvoza prikazuje se poruka sa brojem uspešno uvezenih redova i eventualnim greškama.
 
