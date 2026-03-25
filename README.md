@@ -72,7 +72,7 @@ Interno, aplikacija uvek čuva dimenzije u **milimetrima**.
 | **Smer šare** | Vidljivo samo kada je dezen **uključen** (ima smera). `Horizontalno ↔` = šare teku levo-desno; `Vertikalno ↕` = šare teku gore-dole. Utiče na vizualizaciju zrna na kanvasu. |
 | **Strategija** | `Brza` = 3 heuristike, brz rezultat; `Napredna` = 48 determinističkih + nasumičnih kombinacija, bolji rezultat |
 | **Iteracije** | Samo za naprednu strategiju: broj iteracija pretrage (5–500, preporučeno 60–120) |
-| **Optimizuj broj rezova** | Ako uključeno, algoritam favorizuje rasporede koji zahtevaju manji ukupan broj prolaza testerom |
+| **Optimizuj broj rezova** | Ako je uključeno, algoritam favorizuje rasporede koji zahtevaju manji ukupan broj prolaza testerom |
 
 Kanvas se **odmah ažurira** čim se promene dimenzije ploče, dezen ili smer šare — bez potrebe za ponovnim optimizovanjem.
 
@@ -84,10 +84,10 @@ Svaki komad se definiše sa:
 
 | Polje | Opis |
 |---|---|
-| **Širina** | Širina komada u trenutnoj mjernoj jedinici |
+| **Širina** | Širina komada u trenutnoj mernoj jedinici |
 | **Visina** | Visina komada |
-| **Količina** | Broj komada tih dimenzija (celo pozitivan broj) |
-| **Rot** | Checkmark — da li se ovaj konkretni komad sme rotirati za 90° |
+| **Količina** | Broj komada tih dimenzija (ceo pozitivan broj) |
+| **Rot** | Checkbox — da li se ovaj konkretni komad sme rotirati za 90° |
 
 Kliknuti **Dodaj** ili pritisnuti `Enter`. Komad se validira:
 - dimenzije moraju biti pozitivne
@@ -113,7 +113,7 @@ sirina,visina,kolicina,rotacija
 - separator: `,` ili `;` ili tab
 - `rot` = rotacija dozvoljena; `fix` = zabranjeno (polje je opciono; default je `rot`)
 - linije koje počinju sa `#` se ignorišu (komentari)
-- prazne linije se preskaju
+- prazne linije se preskaču
 
 Nakon uvoza prikazuje se info sa brojem uspešno uvezenih redova i eventualnim greškama.
 
@@ -123,7 +123,7 @@ Nakon uvoza prikazuje se info sa brojem uspešno uvezenih redova i eventualnim g
 
 Kliknuti **Optimizuj**. Tokom optimizacije prikazuje se traka napretka sa procentima.
 
-Optimizacija radi **u browserovom glavnom niti** ali daje kontrolu pretraživaču između chunk-ova (async yield) — stranica ostaje odazivna.
+Optimizacija radi **u browserovom glavnom nizu** ali daje kontrolu pretraživaču između chunk-ova (async yield) — stranica ostaje odazivna.
 
 Dugmad dostupna u toku optimizacije su blokirana da bi se sprečila dupla submisija.
 
@@ -159,8 +159,8 @@ Svaka tabla je interaktivni kanvas:
 
 | Akcija | Efekat |
 |---|---|
-| **Scroll (točkić miša)** | Zum — uvećanje/umanjenje raspored |
-| **Klik + vuci** | Pomeranje (pan) po uveličanoj tabli |
+| **Scroll (točkić miša)** | Zum — uvećanje/umanjenje prikaza |
+| **Klik + pomeranje** | Pomeranje (pan) po uveličanoj tabli |
 | **Dvostruki klik** | Reset zum i pozicije |
 | **Hover (prelaskom miša)** | Tooltip sa detaljima komada: dimenzije, status rotacije, pozicija na tabli |
 
@@ -221,7 +221,7 @@ Pri svakom koraku, algoritam bira **koji komad u koji slobodni pravougaonik** da
 - primenjuje konsolidaciju
 
 **Napredna strategija:**
-- **Faza 1 — determinatička pretraga:** 8 različitih sortiranja × 6 heuristika = **48 deterministických kombinacija**
+- **Faza 1 — deterministička pretraga:** 8 različitih sortiranja × 6 heuristika = **48 determinističkih kombinacija**
 - **Faza 2 — nasumična pretraga:** šumovito sortiranje (noisy sort) — aproksimativno sortiranje po površini sa slučajnim perturbacijama različitog intenziteta (čime se dobijaju različita rešenja bez gubitka smisaonosti)
 
 ### 8 strategija sortiranja
