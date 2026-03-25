@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Krojac iverice - Optimizacija secenja</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Krojac iverice</h1>
+    <p>Optimizacija secenja ploca radi maksimalnog iskorišćenja materijala</p>
+  </header>
+  <main>
+    <section class="panel">
+      <h2>Ulazni podaci</h2>
+      <form id="input-form">
+        <div class="unit-row">
+          <label>Merna jedinica
+            <select id="unit">
+              <option value="mm">mm</option>
+              <option value="cm">cm</option>
+              <option value="m">m</option>
+            </select>
+          </label>
+        </div>
+        <fieldset>
+          <legend id="board-fieldset-legend">Dimenzije osnovne ploce (mm)</legend>
+          <label>Sirina (X)
+            <input type="number" id="boardWidth" min="0" step="any" value="2800" required>
+          </label>
+          <label>Visina (Y)
+            <input type="number" id="boardHeight" min="0" step="any" value="2070" required>
+          </label>
+          <label>Debljina reza (kerf)
+            <input type="number" id="kerf" min="0" step="any" value="3" required>
+          </label>
+          <label>Min. traka otpada
+            <input type="number" id="minWaste" min="0" step="any" value="40" required>
+          </label>
+          <label>
+            Dozvoli rotaciju (90°)
+            <input type="checkbox" id="allowRotate" checked>
+          </label>
+          <label title="Ploča bez žice ili šare (MDF, jednobojna iverica) — svi komadi se slobodno rotiraju bez obzira na individualna podešavanja">
+            Jednobojan dezen
+            <input type="checkbox" id="uniformTexture" checked>
+          </label>
+          <label id="grainDirBox" style="display:none" title="Smer šara na ploči — horizontalne šare teku levo-desno, vertikalne gore-dole">
+            Smer šare
+            <select id="grainAngle">
+              <option value="0">Horizontalno ↔</option>
+              <option value="90">Vertikalno ↕</option>
+            </select>
+          </label>
+          <label>Strategija
+            <select id="strategy">
+              <option value="basic">Brza</option>
+              <option value="advanced">Napredna</option>
+            </select>
+          </label>
+          <label id="iterBox">Iteracije
+            <input type="number" id="iterations" min="5" max="500" value="60">
+          </label>
+          <label>
+            Optimizuj broj rezova
+            <input type="checkbox" id="optimizeCuts" checked>
+          </label>
+          <div id="board-warn" class="field-warn" hidden></div>
+          <div id="board-error" class="field-error" hidden></div>
+        </fieldset>
+        <fieldset>
+          <legend id="parts-fieldset-legend">Komadi za isecanje (mm)</legend>
+          <div id="parts-list"></div>
+          <div class="parts-controls" id="parts-controls">
+            <input type="number" id="partWidth"  placeholder="sirina (mm)" min="0" step="any">
+            <input type="number" id="partHeight" placeholder="visina (mm)" min="0" step="any">
+            <input type="number" id="partQty"    placeholder="kol." min="1" value="1">
+            <label class="rot-col"><input type="checkbox" id="partRot" checked>Rot</label>
+            <button type="button" id="addPartBtn">Dodaj</button>
+          </div>
+          <div id="parts-error" class="field-error" hidden></div>
+          <div class="import-row">
+            <input type="file" id="importFileInput" accept=".csv,.txt" hidden>
+            <button type="button" id="importCsvBtn" class="secondary"
+              title="Format CSV (jedan tip po redu):&#10;  sirina,visina,kolicina,rotacija&#10;Separator: , ; ili Tab&#10;Rotacija: rot=dozvoli, fix=zabrani&#10;Primer: 600,400,3,rot">
+              ↑ Uvezi CSV
+            </button>
+          </div>
+          <div id="parts-info" class="field-info" hidden></div>
+        </fieldset>
+        <div class="actions">
+          <button type="submit">Optimizuj</button>
+          <button type="button" id="exportJsonBtn">Izvoz JSON</button>
+          <button type="button" id="printBtn">Stampaj</button>
+          <button type="button" id="resetBtn" class="secondary">Reset</button>
+        </div>
+        <div id="progress-wrap" class="progress-wrap" hidden>
+          <div class="progress-header">
+            <span>Optimizacija u toku…</span>
+            <span id="progress-pct">0%</span>
+          </div>
+          <div class="progress-bg">
+            <div id="progress-bar" class="progress-fill"></div>
+          </div>
+        </div>
+      </form>
+      <div class="stats" id="stats"></div>
+    </section>
+    <section class="canvas-section">
+      <h2>Raspored secenja</h2>
+      <div id="boards" class="boards"></div>
+      <div class="legend" id="legend"></div>
+    </section>
+  </main>
+  <footer>
+    <small>&copy; 2025 Krojač iverice by ISWorkshop. Sva prava zadržana.</small>
+  </footer>
+  <script type="module" src="assets/js/ui.js"></script>
+</body>
+</html>

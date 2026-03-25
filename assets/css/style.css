@@ -1,0 +1,565 @@
+* {
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, sans-serif
+}
+
+body {
+    margin: 0;
+    background: #f5f7fa;
+    color: #1f2933;
+    line-height: 1.4;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden
+}
+
+header,
+footer {
+    background: #243b53;
+    color: #fff;
+    padding: 1rem 1.25rem
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.7rem
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    padding: 1rem;
+    min-height: 0;
+    align-items: stretch;
+    overflow: hidden
+}
+
+.panel {
+    flex: 1 1 320px;
+    max-width: 420px;
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    overflow-y: auto;
+    min-height: 0
+}
+
+.panel h2 {
+    margin: .2rem 0 .5rem;
+    font-size: 1.2rem
+}
+
+.canvas-section {
+    flex: 3 1 520px;
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    min-height: 0;
+    overflow: hidden
+}
+
+/* Unit row */
+.unit-row {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin-bottom: .25rem;
+}
+
+.unit-row label {
+    flex-direction: row;
+    align-items: center;
+    gap: .5rem;
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+fieldset {
+    border: 1px solid #d9e2ec;
+    border-radius: 6px;
+    margin: 0 0 .75rem;
+    padding: .75rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: .5rem .75rem
+}
+
+legend {
+    padding: 0 .4rem;
+    font-weight: 600;
+    font-size: .8rem;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    color: #486581
+}
+
+label {
+    font-size: .72rem;
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+    font-weight: 500;
+    color: #334e68
+}
+
+input[type=number] {
+    padding: .35rem .4rem;
+    border: 1px solid #bcccdc;
+    border-radius: 4px;
+    font-size: .8rem;
+    width: 100%
+}
+
+select {
+    padding: .35rem .4rem;
+    border: 1px solid #bcccdc;
+    border-radius: 4px;
+    font-size: .75rem;
+    background: #fff;
+}
+
+.parts-controls .rot-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .6rem;
+    font-weight: 600;
+    gap: .25rem;
+}
+
+.parts-controls {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) 50px 80px;
+    gap: .4rem;
+    grid-column: 1/-1;
+    align-items: center;
+}
+
+input:focus {
+    outline: 2px solid #2680c2;
+    outline-offset: 1px
+}
+
+#parts-list {
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+    grid-column: 1/-1
+}
+
+.part-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) 32px 32px;
+    gap: .4rem;
+    align-items: center;
+    font-size: .7rem
+}
+
+.part-row span {
+    background: #f0f4f8;
+    padding: .3rem .4rem;
+    border-radius: 4px;
+    text-align: center
+}
+
+.part-row button {
+    background: #d64545;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: .2rem .4rem;
+    font-size: .65rem
+}
+
+.part-row .edit-btn {
+    background: #486581;
+}
+
+.part-row.editing {
+    background: #e3f8ff;
+    border-radius: 4px;
+    grid-template-columns: repeat(4, 1fr) 32px 32px;
+}
+
+.part-row.editing input,
+.part-row.editing select {
+    padding: .2rem .3rem;
+    font-size: .65rem;
+    width: 100%;
+}
+
+.part-row .save-btn {
+    background: #127fbf;
+}
+
+.part-row .cancel-btn {
+    background: #829ab1;
+}
+
+button {
+    cursor: pointer;
+    background: #127fbf;
+    color: #fff;
+    font-weight: 600;
+    padding: .55rem .9rem;
+    border: none;
+    border-radius: 5px;
+    font-size: .8rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem
+}
+
+button.secondary {
+    background: #829ab1
+}
+
+button:hover:not(:disabled) {
+    filter: brightness(1.08)
+}
+
+button:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-top: .25rem
+}
+
+/* Validation errors */
+.field-error {
+    grid-column: 1 / -1;
+    color: #9b1c1c;
+    background: #fde8e8;
+    border: 1px solid #f5c2c2;
+    border-radius: 4px;
+    padding: .3rem .5rem;
+    font-size: .72rem;
+    margin-top: .1rem;
+}
+
+/* Non-blocking warnings (kerf, etc.) */
+.field-warn {
+    grid-column: 1 / -1;
+    color: #92400e;
+    background: #fffbeb;
+    border: 1px solid #fcd34d;
+    border-radius: 4px;
+    padding: .3rem .5rem;
+    font-size: .72rem;
+    margin-top: .1rem;
+}
+
+/* Success info (CSV import, etc.) */
+.field-info {
+    grid-column: 1 / -1;
+    color: #1c5c2e;
+    background: #d1fae5;
+    border: 1px solid #6ee7b7;
+    border-radius: 4px;
+    padding: .3rem .5rem;
+    font-size: .72rem;
+    margin-top: .1rem;
+}
+
+/* Inline edit validation error */
+.edit-error {
+    grid-column: 1 / -1;
+    color: #9b1c1c;
+    font-size: .62rem;
+    padding: .1rem .2rem;
+}
+
+/* CSV import row */
+.import-row {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: .4rem;
+    align-items: center;
+    margin-top: .15rem;
+}
+
+/* Progress bar */
+.progress-wrap {
+    margin-top: .5rem;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: .72rem;
+    color: #486581;
+    margin-bottom: .3rem;
+    font-weight: 500;
+}
+
+.progress-bg {
+    background: #d9e2ec;
+    border-radius: 6px;
+    height: 8px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #127fbf, #2680c2);
+    border-radius: 6px;
+    width: 0%;
+    transition: width .12s ease;
+}
+
+.stats {
+    margin-top: .5rem;
+    font-size: .75rem;
+    background: #f0f4f8;
+    padding: .5rem;
+    border-radius: 6px;
+    line-height: 1.6
+}
+
+.warn {
+    color: #92400e;
+    background: #fffbeb;
+    border: 1px solid #fcd34d;
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-weight: 600;
+    font-size: .7rem;
+}
+
+.offcut-label {
+    color: #2d6a4f;
+    font-weight: 600;
+}
+
+.cuts-label {
+    color: #1e4db7;
+    font-weight: 600;
+}
+
+.cuts-summary {
+    display: inline-block;
+    margin-top: 3px;
+    color: #333;
+    font-weight: 500;
+}
+
+.cuts-detail {
+    color: #666;
+    font-weight: 400;
+    font-size: 0.9em;
+}
+
+canvas {
+    border: 1px solid #bcccdc;
+    background: #fff;
+    max-width: 100%;
+    height: auto
+}
+
+/* Zoom/pan hint under each canvas */
+.canvas-hint {
+    font-size: .58rem;
+    color: #829ab1;
+    text-align: center;
+    margin-top: .25rem;
+    user-select: none;
+    letter-spacing: .02em;
+}
+
+/* Floating tooltip for canvas hover */
+.canvas-tooltip {
+    position: fixed;
+    z-index: 9999;
+    background: #1f2933;
+    color: #f0f4f8;
+    padding: .45rem .65rem;
+    border-radius: 6px;
+    font-size: .71rem;
+    line-height: 1.55;
+    pointer-events: none;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .3);
+    max-width: 210px;
+}
+
+.canvas-tooltip strong {
+    color: #fff;
+}
+
+.tooltip-rot {
+    color: #f6c90e;
+    font-style: normal;
+}
+
+/* Texture legend note below legend */
+.texture-note {
+    width: 100%;
+    font-size: .6rem;
+    color: #486581;
+    margin-top: .25rem;
+    grid-column: 1 / -1;
+}
+
+/* Legend toggle controls (show/hide texture and cut lines) */
+.legend-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .35rem;
+    padding: .3rem 0 .4rem;
+    border-bottom: 1px solid #d9e2ec;
+    margin-bottom: .25rem;
+    width: 100%;
+}
+
+.legend-controls label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .3rem;
+    font-size: .65rem;
+    color: #334e68;
+    cursor: pointer;
+    font-weight: 500;
+    padding: .15rem .4rem;
+    background: #f0f4f8;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem;
+    font-size: .6rem;
+    flex-shrink: 0
+}
+
+.legend .item {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    padding: .2rem .4rem;
+    background: #f0f4f8;
+    border-radius: 4px
+}
+
+.legend .swatch {
+    width: 14px;
+    height: 14px;
+    border: 1px solid #334e68;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+/* Multiple boards layout */
+#boards {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: flex-start;
+    align-content: flex-start;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+.board-wrap {
+    border: 1px solid #bcccdc;
+    background: #fff;
+    padding: .5rem .6rem .75rem;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .08);
+    position: relative;
+}
+
+.board-wrap h3 {
+    margin: .2rem 0 .4rem;
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    color: #486581;
+}
+
+.board-canvas {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: calc(100vh - 320px);
+    min-height: 160px;
+    background: #fff;
+}
+
+.board-meta {
+    font-size: .6rem;
+    margin-top: .25rem;
+    color: #334e68;
+}
+
+footer {
+    font-size: .7rem;
+    text-align: center;
+    flex-shrink: 0
+}
+
+@media (max-width:700px) {
+    #boards {
+        flex-direction: column;
+    }
+
+    .board-wrap {
+        width: 100%;
+    }
+}
+
+@media (max-width:900px) {
+    body {
+        height: auto;
+        min-height: 100vh;
+        overflow: visible;
+    }
+
+    main {
+        flex-direction: column;
+        overflow: visible;
+        align-items: flex-start;
+    }
+
+    .panel {
+        max-width: 100%;
+        overflow-y: visible;
+        min-height: auto;
+    }
+
+    .canvas-section {
+        min-height: auto;
+    }
+
+    #boards {
+        overflow-y: visible;
+        flex: none;
+    }
+
+    .board-canvas {
+        max-height: none;
+        min-height: auto;
+    }
+}
