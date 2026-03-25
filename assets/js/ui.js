@@ -97,9 +97,9 @@ function validateNewPart(wMM, hMM) {
 function validateBoard() {
     const boardW = toMM(document.getElementById('boardWidth').value, currentUnit);
     const boardH = toMM(document.getElementById('boardHeight').value, currentUnit);
-    if (!(boardW > 0 && boardH > 0)) return 'Dimenzije ploce moraju biti pozitivne.';
+    if (!(boardW > 0 && boardH > 0)) return 'Dimenzije ploče moraju biti pozitivne.';
     const kerf = toMM(document.getElementById('kerf').value, currentUnit);
-    if (kerf < 0) return 'Kerf ne moze biti negativan.';
+    if (kerf < 0) return 'Kerf ne može biti negativan.';
     // Warn (non-blocking) for unrealistic kerf values
     const kerfWarnEl = document.getElementById('board-warn');
     if (kerfWarnEl) {
@@ -215,9 +215,9 @@ function startEdit(row, data) {
 // ── Unit management ────────────────────────────────────────────────────────
 function updateUnitLabels() {
     const u = currentUnit;
-    document.getElementById('board-fieldset-legend').textContent = `Dimenzije osnovne ploce (${u})`;
-    document.getElementById('parts-fieldset-legend').textContent = `Komadi za isecanje (${u})`;
-    document.getElementById('partWidth').placeholder = `sirina (${u})`;
+    document.getElementById('board-fieldset-legend').textContent = `Dimenzije osnovne ploče (${u})`;
+    document.getElementById('parts-fieldset-legend').textContent = `Komadi za isečenje (${u})`;
+    document.getElementById('partWidth').placeholder = `širina (${u})`;
     document.getElementById('partHeight').placeholder = `visina (${u})`;
 }
 
@@ -346,7 +346,7 @@ document.getElementById('addPartBtn').addEventListener('click', () => {
     const qty = +document.getElementById('partQty').value;
     const rot = document.getElementById('partRot').checked;
 
-    const err = validateNewPart(wMM, hMM) ?? (qty < 1 ? 'Kolicina mora biti najmanje 1.' : null);
+    const err = validateNewPart(wMM, hMM) ?? (qty < 1 ? 'Količina mora biti najmanje 1.' : null);
     if (err) { showError('parts-error', err); return; }
 
     addPartMM(wMM, hMM, qty, rot);

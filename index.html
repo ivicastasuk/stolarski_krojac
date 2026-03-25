@@ -2,14 +2,14 @@
 <html lang="sr">
 <head>
   <meta charset="UTF-8" />
-  <title>Krojac iverice - Optimizacija secenja</title>
+  <title>Stolarski Krojač - Optimizacija sečenja</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
   <header>
-    <h1>Krojac iverice</h1>
-    <p>Optimizacija secenja ploca radi maksimalnog iskorišćenja materijala</p>
+    <h1>Stolarski Krojač</h1>
+    <p>Optimizacija sečenja ploča radi maksimalnog iskorišćenja materijala</p>
   </header>
   <main>
     <section class="panel">
@@ -25,8 +25,8 @@
           </label>
         </div>
         <fieldset>
-          <legend id="board-fieldset-legend">Dimenzije osnovne ploce (mm)</legend>
-          <label>Sirina (X)
+          <legend id="board-fieldset-legend">Dimenzije osnovne ploče (mm)</legend>
+          <label>Širina (X)
             <input type="number" id="boardWidth" min="0" step="any" value="2800" required>
           </label>
           <label>Visina (Y)
@@ -70,10 +70,10 @@
           <div id="board-error" class="field-error" hidden></div>
         </fieldset>
         <fieldset>
-          <legend id="parts-fieldset-legend">Komadi za isecanje (mm)</legend>
+          <legend id="parts-fieldset-legend">Komadi za isečenje (mm)</legend>
           <div id="parts-list"></div>
           <div class="parts-controls" id="parts-controls">
-            <input type="number" id="partWidth"  placeholder="sirina (mm)" min="0" step="any">
+            <input type="number" id="partWidth"  placeholder="širina (mm)" min="0" step="any">
             <input type="number" id="partHeight" placeholder="visina (mm)" min="0" step="any">
             <input type="number" id="partQty"    placeholder="kol." min="1" value="1">
             <label class="rot-col"><input type="checkbox" id="partRot" checked>Rot</label>
@@ -83,7 +83,7 @@
           <div class="import-row">
             <input type="file" id="importFileInput" accept=".csv,.txt" hidden>
             <button type="button" id="importCsvBtn" class="secondary"
-              title="Format CSV (jedan tip po redu):&#10;  sirina,visina,kolicina,rotacija&#10;Separator: , ; ili Tab&#10;Rotacija: rot=dozvoli, fix=zabrani&#10;Primer: 600,400,3,rot">
+              title="Format CSV (jedan tip po redu):&#10;  širina,visina,količina,rotacija&#10;Separator: , ; ili Tab&#10;Rotacija: rot=dozvoli, fix=zabrani&#10;Primer: 600,400,3,rot">
               ↑ Uvezi CSV
             </button>
           </div>
@@ -92,7 +92,7 @@
         <div class="actions">
           <button type="submit">Optimizuj</button>
           <button type="button" id="exportJsonBtn">Izvoz JSON</button>
-          <button type="button" id="printBtn">Stampaj</button>
+          <button type="button" id="printBtn">Štampaj</button>
           <button type="button" id="resetBtn" class="secondary">Reset</button>
         </div>
         <div id="progress-wrap" class="progress-wrap" hidden>
@@ -108,13 +108,13 @@
       <div class="stats" id="stats"></div>
     </section>
     <section class="canvas-section">
-      <h2>Raspored secenja</h2>
+      <h2>Raspored sečenja</h2>
       <div id="boards" class="boards"></div>
       <div class="legend" id="legend"></div>
     </section>
   </main>
   <footer>
-    <small>&copy; 2025 Krojač iverice by ISWorkshop. Sva prava zadržana.</small>
+    <small>&copy; 2025 Stolarski Krojač by ISWorkshop. Sva prava zadržana.</small>
   </footer>
   <script type="module" src="assets/js/ui.js"></script>
 </body>

@@ -229,7 +229,7 @@ function makeInteractive(canvas, baseScale, board, boardW, boardH, unit, getOpts
     canvas.addEventListener('wheel', e => {
         e.preventDefault();
         const { cx, cy } = canvasPt(e);
-        const factor = e.deltaY < 0 ? 1.13 : 1 / 1.13;
+        const factor = e.deltaY > 0 ? 1.13 : 1 / 1.13;
         const nz = Math.max(0.4, Math.min(10, zoom * factor));
         panX = cx - (cx - panX) * (nz / zoom);
         panY = cy - (cy - panY) * (nz / zoom);
@@ -362,7 +362,7 @@ export function drawBoards(result, boardW, boardH, unit, dimensionColors, showTe
 
         const hint = document.createElement('div');
         hint.className = 'canvas-hint';
-        hint.textContent = 'scroll = zum  ·  vuci = pomeraj  ·  2× klik = reset  ·  hover = detalji';
+        hint.textContent = 'točkić = zum  ·  prevuci = pomeraj  ·  2× klik = reset  ·  prelazak = detalji';
         wrap.appendChild(hint);
 
         board.placements.forEach(p => {
@@ -410,7 +410,7 @@ export function drawBoards(result, boardW, boardH, unit, dimensionColors, showTe
             + `<span class="cuts-detail">(${hCuts} horizontalni + ${vCuts} vertikalni)</span></span>`
             : '';
 
-        meta.innerHTML = `Iskoriscenje: <strong>${usedPercent}%</strong> (${(board.usedArea / 1e6).toFixed(4)} m²)${offcutHTML}${cutsHTML}`;
+        meta.innerHTML = `Iskorišćenje: <strong>${usedPercent}%</strong> (${(board.usedArea / 1e6).toFixed(4)} m²)${offcutHTML}${cutsHTML}`;
         wrap.appendChild(meta);
         container.appendChild(wrap);
 
@@ -490,8 +490,8 @@ export function updateStats(result, unit) {
 
     el.innerHTML =
         `<strong>Ukupno tabli:</strong> ${boardsCount}<br>` +
-        `<strong>Ukupno iskoriscenje:</strong> ${percent}%<br>` +
-        `Utrosen materijal: ${(result.totalUsed / 1e6).toFixed(4)} m² / ${(totalBoardArea / 1e6).toFixed(4)} m²<br>` +
+        `<strong>Ukupno iskorišćenje:</strong> ${percent}%<br>` +
+        `Utrošen materijal: ${(result.totalUsed / 1e6).toFixed(4)} m² / ${(totalBoardArea / 1e6).toFixed(4)} m²<br>` +
         `Nepostavljeni komadi: ${unplaced}${unplacedHTML}` +
         offcutSummary;
 }

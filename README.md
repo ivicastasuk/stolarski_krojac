@@ -1,4 +1,4 @@
-# Krojač Iverice
+# Stolarski Krojač
 
 **Optimizacija sečenja ploča radi maksimalnog iskorišćenja materijala**
 
@@ -27,7 +27,7 @@ Web aplikacija za 2D optimizaciju krojenja iverice, MDF-a i sličnih ploča. Bez
 
 ## Opis aplikacije
 
-Krojač Iverice rešava problem 2D optimizacije rasporeda krojenja, odnosno raspoređivanja komada po pločama (bin packing): zadato je više komada različitih dimenzija koje treba iseći iz standardnih ploča uz minimalan otpad. Aplikacija:
+Stolarski Krojač rešava problem 2D optimizacije rasporeda krojenja, odnosno raspoređivanja komada po pločama (bin packing): zadato je više komada različitih dimenzija koje treba iseći iz standardnih ploča uz minimalan otpad. Aplikacija:
 
 - pronalazi **raspored koji koristi što manje ploča**
 - **prikazuje raspored** svakog isečka po tabli u razmeri
@@ -304,4 +304,4 @@ assets/
 
 ---
 
-*© 2025 Krojač iverice by ISWorkshop. Sva prava zadržana.*
+*© 2025 Stolarski Krojač by ISWorkshop. Sva prava zadržana.*
