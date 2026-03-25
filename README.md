@@ -27,7 +27,7 @@ Web aplikacija za 2D optimizaciju krojenja iverice, MDF-a i sličnih ploča. Bez
 
 ## Opis aplikacije
 
-Krojač Iverice rešava problem 2D pakovne optimizacije (bin packing): zadato je više komada različitih dimenzija koje treba isseći iz standardnih ploča uz minimalan otpad. Aplikacija:
+Krojač Iverice rešava problem 2D pakovne optimizacije (bin packing): zadato je više komada različitih dimenzija koje treba iseći iz standardnih ploča uz minimalan otpad. Aplikacija:
 
 - pronalazi **raspored koji koristi što manje ploča**
 - **vizualizuje raspored** svakog isečka po tabli u razmeri
@@ -45,7 +45,7 @@ Nije potrebna instalacija niti server. Dovoljno je otvoriti `index.html` u bilo 
 index.html   →  dvostruki klik ili "Open with browser"
 ```
 
-> Preporučeni pretraživači: Chrome, Edge, Firefox (bilo koja verzija iz poslednjih 3 godine).
+> Preporučeni pretraživači: Chrome, Edge, Firefox (bilo koja verzija iz poslednje 3 godine).
 
 ---
 
